@@ -1,7 +1,9 @@
 import {
   createBrowserRouter,
+  Outlet,
   RouterProvider as RootRouterProvider,
 } from 'react-router-dom';
+import Layout from '../pages/Layout';
 import MainPage from '../pages/Main';
 import NotFoundPage from '../pages/NotFound';
 import routes from './routes';
@@ -9,7 +11,17 @@ import routes from './routes';
 const router = createBrowserRouter([
   {
     path: routes.main.index,
-    element: <MainPage />,
+    element: (
+      <Layout>
+        <Outlet />
+      </Layout>
+    ),
+    children: [
+      {
+        index: true,
+        element: <MainPage />,
+      },
+    ],
   },
   {
     path: '*',
