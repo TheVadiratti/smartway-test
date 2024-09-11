@@ -7,8 +7,8 @@ export default function Header() {
       <div className={Styles.container}>
         <h1 className={Styles.heading}>Поиск репозиториев GitHub</h1>
         <div className={Styles.infoContainer}>
-          <p>Тестовое задание от Smartway.</p>
-          <p>Выполнил: Белоусов Вадим.</p>
+          <p className={Styles.text}>Тестовое задание от Smartway.</p>
+          <p className={Styles.text}>Выполнил: Белоусов Вадим.</p>
           <Link to="https://hh.ru/resume/075a84daff0d5185740039ed1f663370667957">
             Ссылка на резюме (HH.ru)
           </Link>
