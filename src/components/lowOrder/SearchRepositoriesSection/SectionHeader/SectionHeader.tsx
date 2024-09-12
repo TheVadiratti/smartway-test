@@ -49,6 +49,7 @@ export default function SectionHeader() {
     <div className={Styles.container}>
       <h2 className={Styles.heading}>Search</h2>
       <input
+        autoFocus
         type="text"
         value={value}
         onChange={changeHandler}

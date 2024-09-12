@@ -25,6 +25,7 @@ module.exports = {
     project: './tsconfig.app.json',
   },
   rules: {
+    'jsx-a11y/no-autofocus': 'off',
     'react-refresh/only-export-components': [
       'warn',
       { allowConstantExport: true },
