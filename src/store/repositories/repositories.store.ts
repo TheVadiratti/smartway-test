@@ -24,7 +24,7 @@ export default class Repositories {
     );
 
     if (!isExist) {
-      this.favoriteRepositories.push(repository);
+      this.favoriteRepositories.unshift(repository);
     }
   }
 
