@@ -49,6 +49,7 @@ export default function SectionHeader({ setFoundRepositoriesHandler }: Props) {
 
   return (
     <div className={Styles.container}>
+      <h2 className={Styles.heading}>Search</h2>
       <input
         type="text"
         value={value}
