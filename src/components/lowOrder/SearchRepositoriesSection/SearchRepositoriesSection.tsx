@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import type { RepositoryDto } from '../../../services/types.dto';
+import repositories from '../../../store/repositories';
+import FavoriteRepositories from './FavoriteRepositories';
 import SearchedRepositories from './SearchedRepositories';
 import Styles from './SearchRepositoriesSection.module.css';
 import SectionHeader from './SectionHeader';
@@ -19,6 +21,7 @@ export default function SearchRepositoriesSection() {
         setFoundRepositoriesHandler={setFoundRepositoriesHandler}
       />
       <SearchedRepositories repositoriesList={foundRepositories} />
+      <FavoriteRepositories repositories={repositories} />
     </section>
   );
 }

@@ -1,0 +1,9 @@
+.headingContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.heading {
+  text-transform: uppercase;
+}

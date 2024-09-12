@@ -9,7 +9,13 @@ export default class Repositories {
   }
 
   addFavoriteRepository(repository: Repository) {
-    this.favoriteRepositories.push(repository);
+    const isExist = this.favoriteRepositories.some(
+      (item) => item.id === repository.id
+    );
+
+    if (!isExist) {
+      this.favoriteRepositories.push(repository);
+    }
   }
 
   resetFavoriteRepositories() {
