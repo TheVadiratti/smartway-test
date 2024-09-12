@@ -21,11 +21,11 @@ const router = createBrowserRouter([
         index: true,
         element: <MainPage />,
       },
+      {
+        path: '*',
+        element: <NotFoundPage />,
+      },
     ],
-  },
-  {
-    path: '*',
-    element: <NotFoundPage />,
   },
 ]);
 
