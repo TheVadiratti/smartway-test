@@ -2,11 +2,20 @@
   grid-column-start: 1;
   grid-column-end: 3;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   border-bottom: 1px solid black;
 }
 
+.inputContainer {
+  display: flex;
+}
+
 .heading {
-  margin-right: 20px;
+  margin: 0 20px 0 0;
+}
+
+.status {
+  margin-bottom: 0;
 }

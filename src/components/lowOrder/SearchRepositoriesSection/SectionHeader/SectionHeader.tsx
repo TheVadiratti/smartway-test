@@ -9,6 +9,7 @@ import Styles from './SectionHeader.module.css';
 
 export default function SectionHeader() {
   const [value, setValue] = useState('');
+  const [isFetching, setIsFetching] = useState(false);
   const timerRef = useRef<number | null>(null);
   const abortControllerRef = useRef<AbortController | null>(null);
 
@@ -19,6 +20,7 @@ export default function SectionHeader() {
     // Если есть предыдущий запрос - удаляет таймер.
     if (timerRef.current) {
       clearTimeout(timerRef.current);
+      setIsFetching(false);
     }
 
     // Если есть предыдущий запрос - прерывает его.
@@ -28,6 +30,8 @@ export default function SectionHeader() {
 
     // Если строка не пустая - отправляется запрос.
     if (newValue.length) {
+      setIsFetching(true);
+
       timerRef.current = setTimeout(() => {
         abortControllerRef.current = new AbortController();
 
@@ -37,7 +41,10 @@ export default function SectionHeader() {
               mapFromDtoToStoreData(res.items)
             );
           })
-          .catch((err) => console.log(err));
+          .catch((err) => console.log(err))
+          .finally(() => {
+            setIsFetching(false);
+          });
       }, 2000);
     } else {
       // Если строка ввода пустая - очищает хранилище.
@@ -47,15 +54,18 @@ export default function SectionHeader() {
 
   return (
     <div className={Styles.container}>
-      <h2 className={Styles.heading}>Search</h2>
-      <input
-        autoFocus
-        type="text"
-        value={value}
-        onChange={changeHandler}
-        placeholder="Find"
-      />
-      <TextCopyButton value={value} />
+      <div className={Styles.inputContainer}>
+        <h2 className={Styles.heading}>Search</h2>
+        <input
+          autoFocus
+          type="text"
+          value={value}
+          onChange={changeHandler}
+          placeholder="query"
+        />
+        <TextCopyButton value={value} />
+      </div>
+      <p className={Styles.status}>{isFetching ? 'Fetching...' : 'Ready'}</p>
     </div>
   );
 }
