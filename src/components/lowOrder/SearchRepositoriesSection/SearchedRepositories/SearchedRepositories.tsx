@@ -1,29 +1,24 @@
-import type { RepositoryDto } from '../../../../services/types.dto';
+import { observer } from 'mobx-react-lite';
+import type Repositories from '../../../../store/repositories/repositories.store';
 import RepositoryCard from '../../RepositoryCard';
 import ListContainer from '../ListContainer';
 import Styles from './SearchedRepositories.module.css';
 
 interface Props {
-  repositoriesList: RepositoryDto[];
+  repositories: Repositories;
 }
 
-export default function SearchedRepositories({ repositoriesList }: Props) {
+const SearchedRepositories = observer(({ repositories }: Props) => {
   return (
     <div>
       <h3 className={Styles.heading}>Searched</h3>
       <ListContainer>
-        {repositoriesList.map((repository) => (
-          <RepositoryCard
-            id={repository.id}
-            fullName={repository.full_name}
-            url={repository.url}
-            ownerAvatar={repository.owner.avatar_url}
-            starsCount={repository.stargazers_count}
-            forksCount={repository.forks_count}
-            key={repository.id}
-          />
+        {repositories.searchedRepositories.map((repository) => (
+          <RepositoryCard repository={repository} key={repository.id} />
         ))}
       </ListContainer>
     </div>
   );
-}
+});
+
+export default SearchedRepositories;

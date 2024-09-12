@@ -1,17 +1,13 @@
 import { type ChangeEventHandler, useState, useRef } from 'react';
 import { fetchRepositories } from '../../../../services/repositories';
-import type {
-  FoundRepositoriesDto,
-  RepositoryDto,
-} from '../../../../services/types.dto';
+import type { FoundRepositoriesDto } from '../../../../services/types.dto';
+import repositories, {
+  mapFromDtoToStoreData,
+} from '../../../../store/repositories';
 import TextCopyButton from '../../TextCopyButton';
 import Styles from './SectionHeader.module.css';
 
-interface Props {
-  setFoundRepositoriesHandler: (list: RepositoryDto[]) => void;
-}
-
-export default function SectionHeader({ setFoundRepositoriesHandler }: Props) {
+export default function SectionHeader() {
   const [value, setValue] = useState('');
   const timerRef = useRef<number | null>(null);
   const abortControllerRef = useRef<AbortController | null>(null);
@@ -37,13 +33,15 @@ export default function SectionHeader({ setFoundRepositoriesHandler }: Props) {
 
         fetchRepositories(newValue, abortControllerRef.current?.signal)
           .then((res: FoundRepositoriesDto) => {
-            setFoundRepositoriesHandler(res.items);
+            repositories.setSearchedRepositories(
+              mapFromDtoToStoreData(res.items)
+            );
           })
           .catch((err) => console.log(err));
       }, 2000);
     } else {
       // Если строка ввода пустая - очищает хранилище.
-      setFoundRepositoriesHandler([]);
+      repositories.resetSearchedRepositories();
     }
   };
 

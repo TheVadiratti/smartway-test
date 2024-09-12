@@ -4,11 +4,13 @@ import Button from '../../ui/Button';
 import Link from '../../ui/Link';
 import Styles from './RepositoryCard.module.css';
 
-interface Props extends Repository {}
-export default function RepositoryCard(props: Props) {
-  const { id, ownerAvatar, fullName, url, starsCount, forksCount } = props;
+interface Props {
+  repository: Repository;
+}
+export default function RepositoryCard({ repository }: Props) {
+  const { id, ownerAvatar, fullName, url, starsCount, forksCount } = repository;
   const clickHandler = () => {
-    repositories.addFavoriteRepository(props);
+    repositories.addFavoriteRepository(repository);
   };
 
   const moreLinkClickHandler: MouseEventHandler<HTMLAnchorElement> = (

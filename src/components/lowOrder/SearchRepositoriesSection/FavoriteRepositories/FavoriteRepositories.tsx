@@ -24,15 +24,7 @@ const FavoriteRepositories = observer(({ repositories }: Props) => {
       </div>
       <ListContainer>
         {repositories.favoriteRepositories.map((repository) => (
-          <RepositoryCard
-            id={repository.id}
-            fullName={repository.fullName}
-            url={repository.url}
-            ownerAvatar={repository.ownerAvatar}
-            starsCount={repository.starsCount}
-            forksCount={repository.forksCount}
-            key={repository.id}
-          />
+          <RepositoryCard repository={repository} />
         ))}
       </ListContainer>
     </div>

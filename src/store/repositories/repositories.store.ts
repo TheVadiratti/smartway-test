@@ -1,9 +1,8 @@
 import { makeAutoObservable } from 'mobx';
-import type { RepositoryDto } from '../../services/types.dto';
 import type { Repository } from './types';
 
 export default class Repositories {
-  repositories: RepositoryDto[] = [];
+  searchedRepositories: Repository[] = [];
 
   favoriteRepositories: Repository[] = [];
 
@@ -11,8 +10,12 @@ export default class Repositories {
     makeAutoObservable(this);
   }
 
-  setRepositories(repositories: RepositoryDto[]) {
-    this.repositories = repositories;
+  setSearchedRepositories(repositories: Repository[]) {
+    this.searchedRepositories = repositories;
+  }
+
+  resetSearchedRepositories() {
+    this.searchedRepositories = [];
   }
 
   addFavoriteRepository(repository: Repository) {
