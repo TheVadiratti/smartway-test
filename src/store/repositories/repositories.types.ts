@@ -1,7 +1,8 @@
 export interface Repository {
   id: number;
-  name: string;
+  fullName: string;
   url: string;
+  ownerAvatar: string;
   starsCount: number;
   forksCount: number;
 }
