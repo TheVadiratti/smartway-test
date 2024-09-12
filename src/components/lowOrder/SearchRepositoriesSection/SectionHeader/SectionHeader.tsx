@@ -1,11 +1,17 @@
 import { type ChangeEventHandler, useState, useRef } from 'react';
 import { fetchRepositories } from '../../../../services/repositories';
-import type { FoundRepositoriesDto } from '../../../../services/types.dto';
-import repositories from '../../../../store/repositories';
+import type {
+  FoundRepositoriesDto,
+  RepositoryDto,
+} from '../../../../services/types.dto';
 import TextCopyButton from '../../TextCopyButton';
 import Styles from './SectionHeader.module.css';
 
-export default function SectionHeader() {
+interface Props {
+  setFoundRepositoriesHandler: (list: RepositoryDto[]) => void;
+}
+
+export default function SectionHeader({ setFoundRepositoriesHandler }: Props) {
   const [value, setValue] = useState('');
   const timerRef = useRef<number | null>(null);
   const abortControllerRef = useRef<AbortController | null>(null);
@@ -31,13 +37,13 @@ export default function SectionHeader() {
 
         fetchRepositories(newValue, abortControllerRef.current?.signal)
           .then((res: FoundRepositoriesDto) => {
-            repositories.setRepositories(res.items);
+            setFoundRepositoriesHandler(res.items);
           })
           .catch((err) => console.log(err));
       }, 2000);
     } else {
       // Если строка ввода пустая - очищает хранилище.
-      repositories.resetRepositories();
+      setFoundRepositoriesHandler([]);
     }
   };
 
