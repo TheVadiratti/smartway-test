@@ -1,5 +1,5 @@
 import Repositories from './repositories.store';
-import type { Repository } from './repositories.types';
+import type { Repository } from './types';
 
 const RepositoriesStore = new Repositories();
 
