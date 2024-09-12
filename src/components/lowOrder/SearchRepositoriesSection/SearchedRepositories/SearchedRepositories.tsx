@@ -1,4 +1,5 @@
 import { observer } from 'mobx-react-lite';
+import { type Repository } from '../../../../store/repositories';
 import type Repositories from '../../../../store/repositories/repositories.store';
 import RepositoryCard from '../../RepositoryCard';
 import ListContainer from '../ListContainer';
@@ -9,12 +10,20 @@ interface Props {
 }
 
 const SearchedRepositories = observer(({ repositories }: Props) => {
+  const cardClickHandler = (repository: Repository) => () => {
+    repositories.addFavoriteRepository(repository);
+  };
+
   return (
     <div>
       <h3 className={Styles.heading}>Searched</h3>
       <ListContainer>
         {repositories.searchedRepositories.map((repository) => (
-          <RepositoryCard repository={repository} key={repository.id} />
+          <RepositoryCard
+            repository={repository}
+            onClick={cardClickHandler(repository)}
+            key={repository.id}
+          />
         ))}
       </ListContainer>
     </div>

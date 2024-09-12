@@ -1,17 +1,15 @@
 import { type MouseEventHandler } from 'react';
-import repositories, { type Repository } from '../../../store/repositories';
+import { type Repository } from '../../../store/repositories';
 import Button from '../../ui/Button';
 import Link from '../../ui/Link';
 import Styles from './RepositoryCard.module.css';
 
 interface Props {
   repository: Repository;
+  onClick?: () => void;
 }
-export default function RepositoryCard({ repository }: Props) {
+export default function RepositoryCard({ repository, onClick }: Props) {
   const { id, ownerAvatar, fullName, url, starsCount, forksCount } = repository;
-  const clickHandler = () => {
-    repositories.addFavoriteRepository(repository);
-  };
 
   const moreLinkClickHandler: MouseEventHandler<HTMLAnchorElement> = (
     event
@@ -22,12 +20,7 @@ export default function RepositoryCard({ repository }: Props) {
   return (
     <li>
       {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events */}
-      <div
-        role="button"
-        tabIndex={0}
-        onClick={clickHandler}
-        className={Styles.card}
-      >
+      <div role="button" tabIndex={0} onClick={onClick} className={Styles.card}>
         <div>
           <p>
             NAME:&nbsp;
