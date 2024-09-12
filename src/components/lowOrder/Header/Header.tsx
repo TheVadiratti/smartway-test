@@ -9,7 +9,10 @@ export default function Header() {
         <div className={Styles.infoContainer}>
           <p className={Styles.text}>Тестовое задание от Smartway.</p>
           <p className={Styles.text}>Выполнил: Белоусов Вадим.</p>
-          <Link to="https://hh.ru/resume/075a84daff0d5185740039ed1f663370667957">
+          <Link
+            to="https://hh.ru/resume/075a84daff0d5185740039ed1f663370667957"
+            target="_blank"
+          >
             Ссылка на резюме (HH.ru)
           </Link>
         </div>
