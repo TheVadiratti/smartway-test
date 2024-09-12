@@ -1,6 +1,5 @@
 import { type MouseEventHandler } from 'react';
-import repositories from '../../../store/repositories';
-import { Repository } from '../../../store/repositories/repositories.types';
+import repositories, { type Repository } from '../../../store/repositories';
 import Button from '../../ui/Button';
 import Link from '../../ui/Link';
 import Styles from './RepositoryCard.module.css';
