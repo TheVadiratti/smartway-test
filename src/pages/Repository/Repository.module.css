@@ -1,0 +1,42 @@
+.container {
+  padding-top: 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.heading {
+  margin-top: 0;
+}
+
+.infoSection {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.text {
+  margin: 0;
+}
+
+.infoSection {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.infoSectionHeading {
+  font-size: 20px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.infoSectionValue {
+  font-size: 20px;
+}
+
+.avatar {
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+}

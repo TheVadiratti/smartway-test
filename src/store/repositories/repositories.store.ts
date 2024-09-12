@@ -31,4 +31,22 @@ export default class Repositories {
   resetFavoriteRepositories() {
     this.favoriteRepositories = [];
   }
+
+  getRepositoryById(id: string) {
+    let repository;
+
+    repository = this.favoriteRepositories.find(
+      (item) => item.id === Number(id)
+    );
+
+    if (repository) return repository;
+
+    repository = this.searchedRepositories.find(
+      (item) => item.id === Number(id)
+    );
+
+    if (repository) return repository;
+
+    return null;
+  }
 }

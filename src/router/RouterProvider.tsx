@@ -6,6 +6,7 @@ import {
 import Layout from '../pages/Layout';
 import MainPage from '../pages/Main';
 import NotFoundPage from '../pages/NotFound';
+import RepositoryPage from '../pages/Repository';
 import routes from './routes';
 
 const router = createBrowserRouter([
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <MainPage />,
+      },
+      {
+        path: ':id',
+        element: <RepositoryPage />,
       },
       {
         path: '*',
